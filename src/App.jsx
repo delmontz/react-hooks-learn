@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const App = props => {
    const [state, setState] = useState(props);
 
    const reset = () => setState(props);
+
+   useEffect(() => {
+      console.log('レンダリングのあとに毎回useEffect発動したぜ！！ ');
+   });
+
+   useEffect(() => {
+      console.log('初回レンダリングのみuseEffect発動したぜ！！ ');
+   }, []);
+
+   useEffect(() => {
+      console.log('nameステートが変化したから発動したぜ！！ ');
+   }, [state.name]);
 
    const { price, name } = state;
    return (
